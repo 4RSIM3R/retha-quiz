@@ -1,6 +1,6 @@
 import { PagePropsData } from '@/types';
 import { Head } from '@inertiajs/react';
-import { AppLayout } from 'layouts';
+import { GuestLayout } from 'layouts';
 import { Card, Container } from 'ui';
 
 export default function Dashboard({ auth }: PagePropsData) {
@@ -15,4 +15,4 @@ export default function Dashboard({ auth }: PagePropsData) {
     );
 }
 
-Dashboard.layout = (page: any) => <AppLayout children={page} />;
+Dashboard.layout = (page: any) => <GuestLayout children={page} />;

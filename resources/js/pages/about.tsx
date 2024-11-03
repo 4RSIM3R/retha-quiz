@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { Header } from 'components/header';
-import { AppLayout } from 'layouts';
+import { GuestLayout } from 'layouts';
 import React from 'react';
 import { Card, Container } from 'ui';
 
@@ -16,4 +16,4 @@ export default function About() {
     );
 }
 
-About.layout = (page: React.ReactNode) => <AppLayout children={page} />;
+About.layout = (page: React.ReactNode) => <GuestLayout children={page} />;
