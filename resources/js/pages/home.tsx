@@ -1,9 +1,12 @@
+import { Container } from '@/components/ui';
 import { GuestLayout } from 'layouts';
 
 export default function Home() {
     return (
         <>
-            <p>Hello world</p>
+            <Container className='my-4' >
+                <p>Hello world</p>
+            </Container>
         </>
     );
 }
