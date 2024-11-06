@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\BackofficeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'backoffice', 'middleware' => ['auth'], 'as' => 'backoffice.'], function () {
 
-    // Route::get('/', [])->name('index');
+    Route::get('/', [BackofficeController::class, 'index'])->name('index');
 
     // Route::group(['prefix' => 'module'], function () {});
 
