@@ -93,7 +93,7 @@ export function AppLayout({ children }: PropsWithChildren) {
                         </Menu>
                     </div>
                 </header>
-                <div className="p-4 lg:p-6">{children}</div>
+                <div className="p-4 lg:p-6 h-full">{children}</div>
             </Sidebar.Inset>
         </Sidebar.Provider>
     );
