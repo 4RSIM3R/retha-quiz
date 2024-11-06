@@ -10,7 +10,12 @@ type ModuleFormProps = {
 
 export default function ModuleForm({ module }: ModuleFormProps) {
 
-    const { data, setData, post, processing, put } = useForm<Module>(module);
+    const { data, setData, post, processing, put } = useForm<Module>({
+        id: module?.id ?? "",
+        name: module?.name ?? "",
+        slug: module?.slug ?? "",
+        description: module?.description ?? "",
+    } satisfies Module);
 
     const submit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -38,9 +43,9 @@ export default function ModuleForm({ module }: ModuleFormProps) {
                 </div>
             </div>
             <form className="flex flex-col space-y-4 mt-4" onSubmit={submit} >
-                <TextField onChange={(value) => setData("name", value)} label="Name" name="name" placeholder="Name" />
-                <TextField onChange={(value) => setData("slug", value)} label="Slug" name="slug" placeholder="Slug" />
-                <Textarea  onChange={(value) => setData("description", value)} label="Description" name="description" placeholder="Description" />
+                <TextField value={data.name} onChange={(value) => setData("name", value)} label="Name" name="name" placeholder="Name" />
+                <TextField value={data.slug} onChange={(value) => setData("slug", value)} label="Slug" name="slug" placeholder="Slug" />
+                <Textarea value={data.description} onChange={(value) => setData("description", value)} label="Description" name="description" placeholder="Description" />
                 <div>
                     <Button isDisabled={processing} className="mt-3" type="submit">Submit</Button>
                 </div>

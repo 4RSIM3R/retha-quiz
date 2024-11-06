@@ -1,4 +1,4 @@
-import { Button, buttonStyles, Menu, Pagination, Table } from "@/components/ui";
+import { Button, buttonStyles, Form, Menu, Pagination, Table } from "@/components/ui";
 import { AppLayout } from "@/layouts/app-layout";
 import { Base } from "@/types/base";
 import { Module } from "@/types/module";
@@ -27,7 +27,7 @@ export default function ModuleIndex({ modules }: ModuleIndexProps) {
                     </Link>
                 </div>
             </div>
-           
+
             <div>
                 {
                     modules.data.length > 0 ? (
@@ -40,30 +40,28 @@ export default function ModuleIndex({ modules }: ModuleIndexProps) {
                                     <Table.Column>ACTION</Table.Column>
                                 </Table.Header>
                                 <Table.Body>
-                                   {
-                                       modules.data.map((module) => (
-                                           <Table.Row key={module.id}>
-                                               <Table.Cell>{module.id}</Table.Cell>
-                                               <Table.Cell>{module.name}</Table.Cell>
-                                               <Table.Cell>{module.description}</Table.Cell>
-                                               <Table.Cell>
-                                                   <Menu>
-                                                       <Menu.Trigger className={buttonStyles({ appearance: "outline", size: "small" })}>ACTION</Menu.Trigger>
-                                                       <Menu.Content placement="bottom" className="sm:min-w-48">
-                                                           <Menu.Item>
-                                                               <IconEye />
-                                                               Detail
-                                                           </Menu.Item>
-                                                           <Menu.Item>
-                                                               <IconFolderDelete />
-                                                               Delete
-                                                           </Menu.Item>
-                                                       </Menu.Content>
-                                                   </Menu>
-                                               </Table.Cell>
-                                           </Table.Row>
-                                       ))
-                                   }
+                                    {
+                                        modules.data.map((module) => (
+                                            <Table.Row key={module.id}>
+                                                <Table.Cell>{module.id}</Table.Cell>
+                                                <Table.Cell>{module.name}</Table.Cell>
+                                                <Table.Cell>{module.description}</Table.Cell>
+                                                <Table.Cell className="flex space-x-2" >
+                                                    <Link href={route('backoffice.module.show', { id: module.id })}>
+                                                        <Button appearance="outline" size="extra-small">
+                                                            <IconEye />
+                                                        </Button>
+                                                    </Link>
+                                                    <Form method="post" action={route('backoffice.module.delete', { id: module.id })}>
+                                                        <input type="hidden" name="_method" value="DELETE" />
+                                                        <Button className="text-red-500 border-red-500" appearance="outline" size="extra-small">
+                                                            <IconFolderDelete className="fill-red-500" />
+                                                        </Button>
+                                                    </Form>
+                                                </Table.Cell>
+                                            </Table.Row>
+                                        ))
+                                    }
                                 </Table.Body>
                             </Table>
                             <Pagination>

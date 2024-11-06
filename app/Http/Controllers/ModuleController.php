@@ -53,22 +53,40 @@ class ModuleController extends Controller
 
     public function show(string $id)
     {
-        //
+        $module = Module::query()->find($id);
+
+        return Inertia::render('backoffice/module/form', [
+            'module' => $module,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(ModuleRequest $request, string $id)
     {
         $payload = $request->validated();
+
+        try {
+            DB::beginTransaction();
+            $module = Module::query()->find($id);
+            $module->update($payload);
+            DB::commit();
+            return Inertia::location(route('backoffice.module.index'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return back()->withErrors('errors', $e->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $module = Module::query()->find($id);
+            $module->delete();
+            DB::commit();
+            return Inertia::location(route('backoffice.module.index'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return back()->withErrors('errors', $e->getMessage());
+        }
     }
 }

@@ -1,6 +1,7 @@
 import { Avatar, Button, Link, Menu, Separator, Sidebar, TextField } from "@/components/ui";
 import { IconBrandApple, IconChevronLgDown, IconCirclePerson, IconCirclePlus, IconDocumentChart, IconLogout, IconMoneybag, IconPeople, IconSearch, IconSettings, IconShield } from "justd-icons";
 import { PropsWithChildren } from "react";
+import { Toaster } from "sonner";
 
 export function AppLayout({ children }: PropsWithChildren) {
     return (
@@ -57,6 +58,7 @@ export function AppLayout({ children }: PropsWithChildren) {
                 <Sidebar.Rail />
             </Sidebar>
             <Sidebar.Inset>
+                <Toaster />
                 <header className="sticky justify-between sm:justify-start top-0 bg-bg h-[3.57rem] px-4 border-b flex items-center gap-x-2">
                     <span className="flex items-center gap-x-3">
                         <Sidebar.Trigger className="-mx-2" />
