@@ -47,7 +47,7 @@ export default function QuestionIndex({ questions }: QuestionIndexProps) {
                                                 <Table.Cell>{question.name}</Table.Cell>
                                                 <Table.Cell>{question.duration}</Table.Cell>
                                                 <Table.Cell className="flex space-x-2" >
-                                                    <Link href={route('backoffice.question.show', { id: question.id })}>
+                                                    <Link href='/question/1'>
                                                         <Button appearance="outline" size="extra-small">
                                                             <IconEye />
                                                         </Button>
