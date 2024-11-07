@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('question');
+            $table->integer('order');
             $table->timestamps();
         });
     }
