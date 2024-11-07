@@ -1,4 +1,4 @@
-import { Button, TextField } from "@/components/ui";
+import { Button, Textarea, TextField } from "@/components/ui";
 import { AppLayout } from "@/layouts/app-layout";
 import { showError } from "@/lib/error";
 import { Question } from "@/types/question";
@@ -46,8 +46,7 @@ export default function QuestionForm({ question }: QuestionFormProps) {
             <form className="flex flex-col space-y-4 mt-4" onSubmit={submit} >
                 <TextField value={data.name} onChange={(value) => setData("name", value)} label="Name" name="name" placeholder="Name" />
                 <TextField value={data.slug} onChange={(value) => setData("slug", value)} label="Slug" name="slug" placeholder="Slug" />
-                <TextField value={data.description} onChange={(value) => setData("description", value)} label="Description" name="description" placeholder="Description" />
-                <TextField value={data.duration.toString()} onChange={(value) => setData("duration", parseInt(value))} label="Duration" name="duration" placeholder="Duration" />
+                <Textarea value={data.description} onChange={(value) => setData("description", value)} label="Description" name="description" placeholder="Description" />
                 <div>
                     <Button isDisabled={processing} className="mt-3" type="submit">Submit</Button>
                 </div>

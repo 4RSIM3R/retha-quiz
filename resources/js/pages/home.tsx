@@ -17,7 +17,7 @@ export default function Home({ modules }: HomeProps) {
                 <div className='grid grid-cols-4 gap-4'>
                     {
                         modules.map((module) => (
-                            <Link href='' >
+                            <Link href={route('question', { id: module.id })} >
                                 <Card>
                                     <Card.Header>
                                         <Card.Title>{module.name}</Card.Title>

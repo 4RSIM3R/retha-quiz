@@ -39,6 +39,7 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $payload = $request->validated();
+        $payload["duration"] = 0;
 
         try {
             DB::beginTransaction();
