@@ -24,14 +24,14 @@ class HomeController extends Controller
     public function question($id)
     {
 
-        $question = Question::query()->find($id);
-        $question_items = QuestionItem::query()->where('question_id', $id)->get();
-        $answer_item = AnswerItem::query()->where('question_id', $id)->get();
+        // $question = Question::query()->find($id);
+        // $question_items = QuestionItem::query()->where('question_id', $id)->get();
+        // $answer_item = AnswerItem::query()->where('question_id', $id)->get();
 
         return inertia('question', [
-            "question" => $question,
-            "question_items" => $question_items,
-            "answer_item" => $answer_item,
+            // "question" => $question,
+            // "question_items" => $question_items,
+            // "answer_item" => $answer_item,
         ]);
     }
 }
