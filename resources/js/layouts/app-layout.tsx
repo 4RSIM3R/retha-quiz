@@ -18,13 +18,13 @@ export function AppLayout({ children }: PropsWithChildren) {
                 </Sidebar.Header>
                 <Sidebar.Content  >
                     <Sidebar.Section collapsible title="Master Data" className="text-black" >
-                        <Sidebar.Item icon={IconPeople} href="#">
+                        <Sidebar.Item icon={IconPeople} href={route('backoffice.module.index')}>
                             Module
                         </Sidebar.Item>
-                        <Sidebar.Item icon={IconCirclePlus} href="#">
+                        <Sidebar.Item icon={IconCirclePlus} href={route('backoffice.question.index')}>
                             Question
                         </Sidebar.Item>
-                        <Sidebar.Item icon={IconDocumentChart} href="#">
+                        <Sidebar.Item icon={IconDocumentChart} href={route('backoffice.student.index')}>
                             Student
                         </Sidebar.Item>
                     </Sidebar.Section>

@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('answer_items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(QuestionItem::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->json('content');
-            $table->boolean('is_correct');
+            $table->text('answer');
+            $table->integer('order');
             $table->timestamps();
         });
     }

@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Module::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('type', ['dnd', 'multiple'])->default('dnd');
             $table->string('name');
             $table->string('slug');
             $table->string('description');

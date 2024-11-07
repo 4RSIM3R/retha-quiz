@@ -1,11 +1,36 @@
-import { Container } from '@/components/ui';
+import { Card, Container } from '@/components/ui';
+import { Module } from '@/types/module';
+import { Link } from '@inertiajs/react';
 import { GuestLayout } from 'layouts';
 
-export default function Home() {
+type HomeProps = {
+    modules: Module[]
+}
+
+export default function Home({ modules }: HomeProps) {
     return (
         <>
-            <Container className='my-4' >
-                <p>Hello world</p>
+            <Container className='max-w-2xl mx-auto my-4 h-full flex flex-col items-center justify-center' >
+                <p>Retha Quiz</p>
+                <p>Description Here</p>
+
+                <div className='grid grid-cols-4 gap-4'>
+                    {
+                        modules.map((module) => (
+                            <Link href='' >
+                                <Card>
+                                    <Card.Header>
+                                        <Card.Title>{module.name}</Card.Title>
+                                    </Card.Header>
+                                    <Card.Content>
+                                        <p>{module.description}</p>
+                                    </Card.Content>
+                                </Card>
+                            </Link>
+                        ))
+                    }
+                </div>
+
             </Container>
         </>
     );

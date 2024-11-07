@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('question_items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer('order');
-            $table->json('content');
+            $table->text('question');
             $table->timestamps();
         });
     }
