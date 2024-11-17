@@ -12,7 +12,7 @@ type QuestionIndexProps = {
 export default function QuestionIndex({ questions }: QuestionIndexProps) {
 
     return (
-        <div className="w-full h-full" >
+        <div className="w-full" >
             <div className="flex flex-row justify-between" >
                 <div className="" >
                     <h1 className="text-xl font-semibold" >Question</h1>

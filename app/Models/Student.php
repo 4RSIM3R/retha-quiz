@@ -5,10 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AnswerRecord extends Model
+class Student extends Model
 {
-    /** @use HasFactory<\Database\Factories\AnswerRecordFactory> */
+    /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
-
-    protected $guarded = [];
 }

@@ -3,9 +3,9 @@ import { AppLayout } from "@/layouts/app-layout";
 export default function StudenIndex() {
 
     return (
-        <>
-            <p>Module StudenIndex</p>
-        </>
+        <div className="w-full" >
+
+        </div>
     )
 
 }
