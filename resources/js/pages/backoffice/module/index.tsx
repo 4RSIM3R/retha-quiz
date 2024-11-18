@@ -3,7 +3,7 @@ import { AppLayout } from "@/layouts/app-layout";
 import { Base } from "@/types/base";
 import { Module } from "@/types/module";
 import { Link } from "@inertiajs/react";
-import { IconEye, IconFolderDelete, IconPlus } from "justd-icons";
+import { IconEye, IconFolderDelete, IconPlus, IconTrash } from "justd-icons";
 
 type ModuleIndexProps = {
     modules: Base<Module[]>
@@ -30,7 +30,7 @@ export default function ModuleIndex({ modules }: ModuleIndexProps) {
 
             <div>
                 {
-                    modules.data.length > 0 ? (
+                    modules.items.length > 0 ? (
                         <>
                             <Table className="my-4" >
                                 <Table.Header className="w-full" >
@@ -41,7 +41,7 @@ export default function ModuleIndex({ modules }: ModuleIndexProps) {
                                 </Table.Header>
                                 <Table.Body>
                                     {
-                                        modules.data.map((module) => (
+                                        modules.items.map((module) => (
                                             <Table.Row key={module.id}>
                                                 <Table.Cell>{module.id}</Table.Cell>
                                                 <Table.Cell>{module.name}</Table.Cell>
@@ -54,8 +54,8 @@ export default function ModuleIndex({ modules }: ModuleIndexProps) {
                                                     </Link>
                                                     <Form method="post" action={route('backoffice.module.delete', { id: module.id })}>
                                                         <input type="hidden" name="_method" value="DELETE" />
-                                                        <Button className="text-red-500 border-red-500" appearance="outline" size="extra-small">
-                                                            <IconFolderDelete className="fill-red-500" />
+                                                        <Button className="" appearance="outline" size="extra-small">
+                                                            <IconTrash className="fill-red-500" />
                                                         </Button>
                                                     </Form>
                                                 </Table.Cell>

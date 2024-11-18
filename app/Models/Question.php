@@ -11,4 +11,10 @@ class Question extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
+
 }

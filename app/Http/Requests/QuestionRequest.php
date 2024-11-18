@@ -22,8 +22,8 @@ class QuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'module_id' => ['required', 'exists:modules,id'],
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'duration' => ['required', 'integer', 'min:1', 'max:120'],
         ];

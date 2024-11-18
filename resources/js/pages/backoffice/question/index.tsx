@@ -30,20 +30,22 @@ export default function QuestionIndex({ questions }: QuestionIndexProps) {
 
             <div>
                 {
-                    questions.data.length > 0 ? (
+                    questions.items.length > 0 ? (
                         <>
                             <Table className="my-4" >
                                 <Table.Header className="w-full" >
                                     <Table.Column isRowHeader>ID</Table.Column>
+                                    <Table.Column>Module</Table.Column>
                                     <Table.Column>Name</Table.Column>
                                     <Table.Column>Duration</Table.Column>
                                     <Table.Column>ACTION</Table.Column>
                                 </Table.Header>
                                 <Table.Body>
                                     {
-                                        questions.data.map((question) => (
+                                        questions.items.map((question) => (
                                             <Table.Row key={question.id}>
-                                                <Table.Cell>{question.id}</Table.Cell>
+                                                  <Table.Cell>{question.id}</Table.Cell>
+                                                <Table.Cell>{question.module?.name}</Table.Cell>
                                                 <Table.Cell>{question.name}</Table.Cell>
                                                 <Table.Cell>{question.duration}</Table.Cell>
                                                 <Table.Cell className="flex space-x-2" >

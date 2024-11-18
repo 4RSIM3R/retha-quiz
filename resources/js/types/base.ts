@@ -1,6 +1,5 @@
 export type Base<T> = {
-    data: T,
     prev_page: number | null,
-    current_page: number,
+    items: T,
     next_page: number | null
 }

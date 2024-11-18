@@ -1,21 +1,23 @@
-import { Button, Textarea, TextField } from "@/components/ui";
+import { Button, Select, Textarea, TextField } from "@/components/ui";
 import { AppLayout } from "@/layouts/app-layout";
 import { showError } from "@/lib/error";
+import { Module } from "@/types/module";
 import { Question } from "@/types/question";
 import { useForm } from "@inertiajs/react";
 
 type QuestionFormProps = {
     question?: Question
+    modules: Module[]
 }
 
-export default function QuestionForm({ question }: QuestionFormProps) {
+export default function QuestionForm({ question, modules }: QuestionFormProps) {
 
     const { data, setData, post, processing, put } = useForm<Question>({
-        id: question?.id ?? "",
-        name: question?.name ?? "",
-        slug: question?.slug ?? "",
-        description: question?.description ?? "",
-        duration: question?.duration ?? 0,
+        id: question?.id,
+        module_id: question?.module_id,
+        name: question?.name,
+        description: question?.description,
+        duration: question?.duration,
     } satisfies Question);
 
     const submit = (e: { preventDefault: () => void }) => {
@@ -44,9 +46,40 @@ export default function QuestionForm({ question }: QuestionFormProps) {
                 </div>
             </div>
             <form className="flex flex-col space-y-4 mt-4" onSubmit={submit} >
-                <TextField value={data.name} onChange={(value) => setData("name", value)} label="Name" name="name" placeholder="Name" />
-                <TextField value={data.slug} onChange={(value) => setData("slug", value)} label="Slug" name="slug" placeholder="Slug" />
-                <Textarea value={data.description} onChange={(value) => setData("description", value)} label="Description" name="description" placeholder="Description" />
+                <Select label="Modules" placeholder="Select a module"
+                    onSelectionChange={(value) => {
+                        setData("module_id", value.toString())
+                    }}
+                >
+                    <Select.Trigger />
+                    <Select.List items={modules}>
+                        {(item) => (
+                            <Select.Option id={item.id} textValue={item.name}>
+                                <Select.OptionDetails label={item.name} />
+                            </Select.Option>
+                        )}
+                    </Select.List>
+                </Select>
+                <TextField
+                    label="Name"
+                    name="name"
+                    value={data.name}
+                    onChange={(value) => setData("name", value)}
+                />
+                <TextField
+                    label="Duration (in minutes)"
+                    type="number"
+                    name="duration"
+                    value={data.duration}
+                    onChange={(value) => setData("duration", value)}
+                />
+                <Textarea
+                    label="Description"
+                    name="description"
+                    placeholder="Description"
+                    value={data.description}
+                    onChange={(value) => setData("description", value)}
+                />
                 <div>
                     <Button isDisabled={processing} className="mt-3" type="submit">Submit</Button>
                 </div>

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Models\Module;
 use App\Models\Question;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -17,13 +19,12 @@ class QuestionController extends Controller
         $page = $request->get('page', 1);
         $perPage = $request->get('perPage', 10);
 
-        $questions = Question::query()->latest()->paginate(perPage: $perPage, page: $page)->withQueryString();
+        $questions = Question::query()->with(['module'])->latest()->paginate(perPage: $perPage, page: $page);
 
         $response = [
-            'data' => $questions->items(),
-            'prev_page' => (int)mb_substr($questions->previousPageUrl(), -1) ?: null,
-            'current_page' => $questions->currentPage(),
-            'next_page' => (int)mb_substr($questions->nextPageUrl(), -1) ?: null
+            "prev_page" => $questions->currentPage() > 1 ? $questions->currentPage() - 1 : null,
+            "items" => $questions->items(),
+            "next_page" => $questions->hasMorePages() ? $questions->currentPage() + 1 : null,
         ];
 
         return Inertia::render('backoffice/question/index', [
@@ -33,13 +34,17 @@ class QuestionController extends Controller
 
     public function create()
     {
-        return Inertia::render('backoffice/question/form');
+        $modules = Module::query()->get(['id', 'name']);
+
+        return Inertia::render('backoffice/question/form', [
+            "modules" => $modules,
+        ]);
     }
 
     public function store(QuestionRequest $request)
     {
         $payload = $request->validated();
-        $payload["duration"] = 0;
+        $payload["slug"] = Str::slug($payload["name"]);
 
         try {
             DB::beginTransaction();
