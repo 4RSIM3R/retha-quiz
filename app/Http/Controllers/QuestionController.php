@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParseCodeRequest;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Module;
 use App\Models\Question;
@@ -70,6 +71,35 @@ class QuestionController extends Controller
     {
         return Inertia::render('backoffice/question/code', [
             'question' => Question::query()->find($id),
+        ]);
+    }
+
+    public function parse(ParseCodeRequest $request)
+    {
+        $payload = $request->validated();
+        $code = $payload['code'];
+
+        $tmpFileName = 'code_' . Str::random(10) . '.py';
+        $tmpFilePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $tmpFileName;
+        file_put_contents($tmpFilePath, $code);
+
+        $pythonPath = 'python'; // Replace this with your Python executable path
+        $scriptPath = base_path('python/parse.py');
+        $command = "$pythonPath \"$scriptPath\" --file \"$tmpFilePath\"";
+
+        // Execute the command using shell_exec
+        $output = shell_exec($command);
+
+        // Check for errors
+        if ($output === null) {
+            return back()->withErrors('errors', 'cannot parse the code');
+        }
+
+        // Decode the JSON output from Python
+        $result = json_decode($output, true);
+
+        return Inertia::render('backoffice/question/arrange', [
+            "result" => $result,
         ]);
     }
 
