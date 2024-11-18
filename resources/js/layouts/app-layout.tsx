@@ -64,7 +64,6 @@ export function AppLayout({ children }: PropsWithChildren) {
                         <Sidebar.Trigger className="-mx-2" />
                         <Separator className="h-6 sm:block hidden" orientation="vertical" />
                     </span>
-                    <TextField placeholder="Cari pasien" className="w-full sm:max-w-[20rem] sm:w-auto" />
                     <div className="flex sm:hidden items-center gap-x-2">
                         <Button appearance="plain" aria-label="Search..." size="square-petite">
                             <IconSearch />

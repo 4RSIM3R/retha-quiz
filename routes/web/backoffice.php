@@ -24,6 +24,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['auth'], 'as' => 'backo
         Route::get('create', [QuestionController::class, 'create'])->name('create');
         Route::post('store', [QuestionController::class, 'store'])->name('store');
         Route::get('{id}/show', [QuestionController::class, 'show'])->name('show');
+        Route::get('{id}/code', [QuestionController::class, 'code'])->name('code');
         Route::put('{id}/edit', [QuestionController::class, 'update'])->name('update');
         Route::delete('{id}/delete', [QuestionController::class, 'delete'])->name('delete');
     });

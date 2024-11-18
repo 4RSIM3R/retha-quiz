@@ -66,6 +66,13 @@ class QuestionController extends Controller
         ]);
     }
 
+    public function code($id)
+    {
+        return Inertia::render('backoffice/question/code', [
+            'question' => Question::query()->find($id),
+        ]);
+    }
+
 
     public function update(QuestionRequest $request, string $id)
     {

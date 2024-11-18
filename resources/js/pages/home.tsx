@@ -10,14 +10,14 @@ type HomeProps = {
 export default function Home({ modules }: HomeProps) {
     return (
         <>
-            <Container className='max-w-2xl mx-auto my-4 h-full flex flex-col items-center justify-center' >
+            <Container className='max-w-4xl mx-auto my-4 h-full flex flex-col items-center justify-center' >
                 <p>Retha Quiz</p>
                 <p>Description Here</p>
 
-                <div className='grid grid-cols-4 gap-4'>
+                <div className='grid grid-cols-12 gap-4'>
                     {
                         modules.map((module) => (
-                            <Link href={route('question', { id: module.id })} >
+                            <Link className='col-span-4' href={route('question', { id: module.id })} >
                                 <Card>
                                     <Card.Header>
                                         <Card.Title>{module.name}</Card.Title>
