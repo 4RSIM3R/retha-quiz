@@ -7,31 +7,26 @@ use App\Models\Module;
 use App\Models\Question;
 use App\Models\QuestionItem;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-
-        $modules = Module::all();
-
-        return inertia('home', [
-            "modules" => $modules,
-        ]);
+        return Inertia::render('home', ["modules" => Module::all()]);
     }
 
     public function question($id)
     {
+        $questions = Question::query()->with(['module'])->where('module_id', $id)->get();
+        $module = Module::query()->where('id', $id)->first();
+        return Inertia::render('question', ["questions" => $questions, "module" => $module]);
+    }
 
-        // $question = Question::query()->find($id);
-        // $question_items = QuestionItem::query()->where('question_id', $id)->get();
-        // $answer_item = AnswerItem::query()->where('question_id', $id)->get();
-
-        return inertia('question', [
-            // "question" => $question,
-            // "question_items" => $question_items,
-            // "answer_item" => $answer_item,
-        ]);
+    public function question_detail($id)
+    {
+        $items = QuestionItem::query()->where('question_id', $id)->get();
+        return Inertia::render('question_detail', ["items" => $items]);
     }
 }

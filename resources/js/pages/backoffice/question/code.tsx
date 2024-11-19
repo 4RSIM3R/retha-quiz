@@ -11,7 +11,7 @@ type CodeFormSchema = {
     code?: any;
 }
 
-export default function CodeForm() {
+export default function CodeForm({ question }: { question: any }) {
 
     const [code, setCode] = useState<string>("");
 
@@ -20,7 +20,7 @@ export default function CodeForm() {
     const onSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
 
-        post(route('backoffice.question.parse', { id: 1 }), {
+        post(route('backoffice.question.parse', { id: question.id }), {
             onSuccess: (_) => { },
             onError: (error) => showError(error),
         });
