@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArrangeQuestionRequest;
 use App\Http\Requests\ParseCodeRequest;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Module;
 use App\Models\Question;
+use App\Models\QuestionItem;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,7 +76,7 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function parse(ParseCodeRequest $request)
+    public function parse($id, ParseCodeRequest $request)
     {
         $payload = $request->validated();
         $code = $payload['code'];
@@ -87,20 +89,44 @@ class QuestionController extends Controller
         $scriptPath = base_path('python/parse.py');
         $command = "$pythonPath \"$scriptPath\" --file \"$tmpFilePath\"";
 
-        // Execute the command using shell_exec
         $output = shell_exec($command);
 
-        // Check for errors
         if ($output === null) {
             return back()->withErrors('errors', 'cannot parse the code');
         }
 
-        // Decode the JSON output from Python
         $result = json_decode($output, true);
 
         return Inertia::render('backoffice/question/arrange', [
             "result" => $result,
+            "id" => $id,
         ]);
+    }
+
+    public function arrange($id, ArrangeQuestionRequest $request)
+    {
+        $payload = $request->validated();
+        
+        $items = [];
+
+        foreach ($payload["questions"] as $item) {
+            $items[] = [
+                "question_id" => $id,
+                "order" => $item["order"],
+                "question" => $item["question"],
+                "code" => $item["code"],
+            ];
+        }
+        
+        try {
+            DB::beginTransaction();
+            QuestionItem::query()->insert($items);
+            DB::commit();
+            return Inertia::location(route('backoffice.index'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return back()->withErrors('errors', $e->getMessage());
+        }
     }
 
 

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['auth'], 'as' => 'backo
 
         Route::get('{id}/code', [QuestionController::class, 'code'])->name('code');
         Route::post('{id}/parse', [QuestionController::class, 'parse'])->name('parse');
+        Route::post('{id}/arrange', [QuestionController::class, 'arrange'])->name('arrange');
     });
 
     Route::group(['prefix' => 'student', 'as' => 'student.'], function () {

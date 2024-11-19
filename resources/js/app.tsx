@@ -28,5 +28,8 @@ createInertiaApp({
 
         createRoot(el).render(appElement);
     },
-    progress: false
+    progress: {
+        showSpinner: true,
+        color: '#FF2D20',
+    }
 });

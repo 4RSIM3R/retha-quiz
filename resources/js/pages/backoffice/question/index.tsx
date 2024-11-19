@@ -3,7 +3,7 @@ import { AppLayout } from "@/layouts/app-layout";
 import { Base } from "@/types/base";
 import { Question } from "@/types/question";
 import { Link } from "@inertiajs/react";
-import { IconEye, IconFolderDelete, IconPencilBox, IconPlus } from "justd-icons";
+import { IconCodeBrackets, IconEye, IconFolderDelete, IconPencilBox, IconPlus } from "justd-icons";
 
 type QuestionIndexProps = {
     questions: Base<Question[]>
@@ -54,11 +54,11 @@ export default function QuestionIndex({ questions }: QuestionIndexProps) {
                                                             <IconEye />
                                                         </Button>
                                                     </Link>
-                                                    <Link href={route('backoffice.question.show', { id: question.id })}>
+                                                    {/* <Link href={route('backoffice.question.code', { id: question.id })}>
                                                         <Button appearance="outline" size="extra-small">
-                                                            <IconPencilBox />
+                                                            <IconCodeBrackets />
                                                         </Button>
-                                                    </Link>
+                                                    </Link> */}
                                                     {/* <Form method="post" action={route('backoffice.question.delete', { id: question.id })}>
                                                         <input type="hidden" name="_method" value="DELETE" />
                                                         <Button className="text-red-500 border-red-500" appearance="outline" size="extra-small">
