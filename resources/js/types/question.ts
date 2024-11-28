@@ -9,3 +9,10 @@ export type Question = {
     duration?: any,
     module?: Module
 }
+
+export type QuestionItem = {
+    id: number;
+    question: string;
+    code: string;
+    order: number;
+};
