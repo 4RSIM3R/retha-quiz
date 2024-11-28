@@ -27,6 +27,7 @@ class HomeController extends Controller
     public function question_detail($id)
     {
         $items = QuestionItem::query()->where('question_id', $id)->get();
-        return Inertia::render('question_detail', ["items" => $items]);
+        $question = Question::query()->where('id', $id)->first();
+        return Inertia::render('question_detail', ["items" => $items, "question" => $question]);
     }
 }
