@@ -1,3 +1,4 @@
+
 import { Button, Pagination, Table } from "@/components/ui";
 import { AppLayout } from "@/layouts/app-layout";
 import { Base } from "@/types/base";

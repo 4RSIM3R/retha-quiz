@@ -48,7 +48,7 @@ export default function Login() {
                 <div className='lg:p-8'>
                     <form onSubmit={submit} className='mx-auto flex w-full flex-col justify-center sm:max-w-md'>
                         <div className='flex flex-col space-y-2 text-left mb-4'>
-                            <h1 className='text-2xl font-semibold tracking-tight'>Retha Quiz Login</h1>
+                            <h1 className='text-2xl font-semibold tracking-tight'>Superadmin Auth</h1>
                             <p className='text-sm text-muted-foreground'>
                                 Enter your email and password below <br />
                                 to log into your account
@@ -59,7 +59,7 @@ export default function Login() {
                             type="email"
                             name="email"
                             value={data.email}
-                            autoComplete="off"
+                            autoComplete="one-time-code"
                             autoFocus
                             onChange={(v) => setData("email", v)}
                             errorMessage={errors.email}
@@ -71,7 +71,7 @@ export default function Login() {
                             type="password"
                             name="password"
                             value={data.password}
-                            autoComplete="off"
+                            autoComplete="one-time-code"
                             autoFocus
                             onChange={(v) => setData("password", v)}
                             errorMessage={errors.password}
