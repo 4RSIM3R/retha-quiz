@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('answer_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Question::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId(Student::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Student::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('score');
             $table->integer('time_taken');
             $table->timestamps();

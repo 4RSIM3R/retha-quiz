@@ -59,12 +59,6 @@ export default function QuestionIndex({ questions }: QuestionIndexProps) {
                                                             <IconCodeBrackets />
                                                         </Button>
                                                     </Link>
-                                                    {/* <Form method="post" action={route('backoffice.question.delete', { id: question.id })}>
-                                                        <input type="hidden" name="_method" value="DELETE" />
-                                                        <Button className="text-red-500 border-red-500" appearance="outline" size="extra-small">
-                                                            <IconFolderDelete className="fill-red-500" />
-                                                        </Button>
-                                                    </Form> */}
                                                 </Table.Cell>
                                             </Table.Row>
                                         ))
