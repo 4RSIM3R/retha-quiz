@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\StudentAuthMiddleware;
 use App\Http\Middleware\UserAuthMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -25,7 +26,8 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
         $middleware->alias([
-            'auth.role' => UserAuthMiddleware::class
+            'auth.role' => UserAuthMiddleware::class,
+            'auth.student' => StudentAuthMiddleware::class
         ]);
 
         //
