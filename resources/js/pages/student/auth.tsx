@@ -12,7 +12,7 @@ export default function StudentAuth() {
 
     const submit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        post(route('attempt'), {
+        post(route('auth-student.attempt'), {
             onSuccess: (_) => {
 
             },

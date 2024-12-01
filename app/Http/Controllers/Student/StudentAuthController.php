@@ -11,13 +11,13 @@ class StudentAuthController extends Controller
 {
     public function login()
     {
-        return Inertia::render('student/login');
+        return Inertia::render('student/auth');
     }
 
     public function auth(LoginRequest $request)
     {
         $data = $request->validated();
-        Auth::guard('student')->login($data);
+        Auth::guard('student')->attempt($data);
         return redirect()->intended(route('home'));
     }
 

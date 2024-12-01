@@ -74,7 +74,7 @@ return [
             'model' => env('AUTH_MODEL', User::class),
         ],
 
-        'super_admins' => [
+        'students' => [
             'driver' => 'eloquent',
             'model' => Student::class,
         ],
