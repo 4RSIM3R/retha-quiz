@@ -64,6 +64,7 @@ class StudentController extends Controller
     {
 
         $payload = $request->validated();
+        $payload["password"] = Hash::make($payload["password"]);
 
         try {
             DB::beginTransaction();
