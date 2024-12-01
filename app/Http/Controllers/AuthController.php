@@ -16,7 +16,6 @@ class AuthController extends Controller
 
     public function auth(LoginRequest $request)
     {
-        $payload = $request->validated();
 
         try {
             $data = $request->validated();
