@@ -11,6 +11,7 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::guard("web")->check()) return redirect(route('backoffice.index'));
         return Inertia::render('auth/login');
     }
 
