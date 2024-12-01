@@ -9,6 +9,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        return Inertia::render('student/auth');
+        return Inertia::render('student/index');
     }
 }
