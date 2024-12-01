@@ -21,8 +21,8 @@ class StudentSeeder extends Seeder
                 "password" => Hash::make("password")
             ],
             [
-                "email" => "student_1@retha.com",
-                "name" => "Student 1",
+                "email" => "student_2@retha.com",
+                "name" => "Student 2",
                 "password" => Hash::make("password")
             ]
         ];

@@ -11,6 +11,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 });
 
 Route::group(['prefix' => 'auth-student', 'as' => 'auth-student.'], function () {
+    Route::get('login', [StudentAuthController::class, 'login'])->name('login');
     Route::post('attempt', [StudentAuthController::class, 'auth'])->name('attempt');
     Route::post('logout', [StudentAuthController::class, 'logout'])->name('logout');
 });

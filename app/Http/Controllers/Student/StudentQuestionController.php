@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AnswerRecordRequest;
+use App\Models\AnswerRecord;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\QuestionItem;
+use Auth;
 use Inertia\Inertia;
 
 class StudentQuestionController extends Controller
@@ -25,8 +28,11 @@ class StudentQuestionController extends Controller
         return Inertia::render('question_detail', ["items" => $items, "question" => $question]);
     }
 
-    public function store() {
-        
+    public function store(AnswerRecordRequest $request)
+    {
+        $studentId = Auth::guard('student')->id();
+        AnswerRecord::create(array_merge($request->validated(), ['student_id' => $studentId]));
+        return true;
     }
 
 }

@@ -11,6 +11,7 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::guard("web")->check()) return redirect(route('backoffice.index'));
         return Inertia::render('auth/login');
     }
 
@@ -35,6 +36,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->intended(route('login'));
+        return redirect()->intended(route('auth.login'));
     }
 }
