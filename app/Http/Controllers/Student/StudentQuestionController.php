@@ -8,7 +8,7 @@ use App\Models\AnswerRecord;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\QuestionItem;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class StudentQuestionController extends Controller

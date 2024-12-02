@@ -14,7 +14,7 @@ export default function Question({ questions, module }: QuestionProps) {
             <div className='grid grid-cols-12 gap-4 mt-4 w-full'>
                 {
                     questions.map((question) => (
-                        <Link className='col-span-4' href={route('question_detail', { id: question.id })} >
+                        <Link className='col-span-4' href={route('question.detail', { id: question.id })} >
                             <Card>
                                 <Card.Header>
                                     <Card.Title>{question.name}</Card.Title>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -9,6 +10,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return Inertia::render('student/index');
+        $modules = Module::query()->latest()->get();
+        return Inertia::render('student/module', ["modules" => $modules]);
     }
 }
